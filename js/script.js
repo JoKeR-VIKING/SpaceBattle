@@ -14,7 +14,7 @@ let levels =
     "hard" : 1000,
 };
 
-let difficulty;
+let difficulty, music;
 
 document.getElementsByClassName("again")[0].addEventListener("click", function () {
     window.location.reload();
@@ -74,11 +74,13 @@ document.addEventListener("keydown", (event) => {
                     curr_left <= asteroids[i].getBoundingClientRect().right)
                 {
                     new Audio("sounds/explosion.wav").play();
-                    
+
                     score += 50;
                     document.getElementsByClassName("score-number")[0].textContent = score;
                     unsafeArea.removeChild(bullet);
-                    
+
+                    clearInterval(shoot);
+
                     let asteroidImage = document.createElement("img");
                     asteroidImage.className = "asteroid-image";
                     asteroidImage.src = "images/exploded.png";
@@ -86,11 +88,10 @@ document.addEventListener("keydown", (event) => {
                     asteroids[i].innerHTML = "";
                     asteroids[i].appendChild(asteroidImage);
                     await sleep(150);
-                    
+
                     unsafeArea.removeChild(asteroids[i]);
                     asteroids.splice(i, 1);
                     bulletsOnScreen--;
-                    clearInterval(shoot);
                     return;
                 }
             }
@@ -152,11 +153,11 @@ function asteroidFall()
         )
         {
             new Audio("sounds/explosion.wav").play();
-            
+
             if (lives === 1)
             {
                 music.pause();
-                new Audio("../sounds/game-over.wav").play();
+                new Audio("sounds/game-over.wav").play();
                 for (let i=0;i<asteroids.length;i++)
                     unsafeArea.removeChild(asteroids[i]);
                 clearInterval(randomFall);
@@ -168,6 +169,8 @@ function asteroidFall()
             lives--;
             document.getElementsByClassName("lives")[0].textContent = "LIVES: " + lives;
 
+            clearInterval(fall);
+
             asteroidImage = document.createElement("img");
             asteroidImage.className = "asteroid-image";
             asteroidImage.src = "images/exploded.png";
@@ -175,7 +178,7 @@ function asteroidFall()
             asteroid.innerHTML = "";
             asteroid.appendChild(asteroidImage);
             await sleep(150);
-            
+
             unsafeArea.removeChild(asteroid);
             for (let i=0;i<asteroids.length;i++)
             {
@@ -185,7 +188,7 @@ function asteroidFall()
                     break;
                 }
             }
-            clearInterval(fall);
+
             return;
         }
 
@@ -217,9 +220,8 @@ document.getElementsByClassName("hard")[0].addEventListener("click", function ()
 
 function startGame(speed)
 {
-    let music = new Audio("sounds/background-music.mp3");
+    music = new Audio("../sounds/background-music.mp3");
     music.loop = true;
     music.play();
     randomFall = setInterval(asteroidFall, speed);
 }
-
