@@ -14,18 +14,7 @@ let levels =
     "hard" : 1000,
 };
 
-let scores, difficulty;
-let httpRequest = new XMLHttpRequest();
-
-httpRequest.open("GET", "https://jsonkeeper.com/b/ZLK4", true);
-httpRequest.send();
-
-httpRequest.addEventListener("readystatechange", function() {
-    if (this.readyState === this.DONE)
-    {
-        scores = JSON.parse(this.response);
-    }
-});
+let difficulty;
 
 document.getElementsByClassName("again")[0].addEventListener("click", function () {
     window.location.reload();
@@ -144,8 +133,9 @@ function asteroidFall()
                 clearInterval(randomFall);
                 document.getElementsByClassName("game-over")[0].style.display = "block";
                 document.getElementsByClassName("lives")[0].textContent = "LIVES: " + 0;
-                scores[difficulty] = Math.max(scores[difficulty], score);
-
+                let localScore = isNaN(localStorage.getItem(difficulty)) ? 0 : localStorage.getItem(difficulty);
+                let maxScore = Math.max(parseInt(localScore), score);
+                localStorage.setItem(difficulty, maxScore);
                 return;
             }
 
@@ -173,7 +163,7 @@ function asteroidFall()
 document.getElementsByClassName("easy")[0].addEventListener("click", function ()
 {
     document.getElementsByClassName("levels")[0].style.display = "none";
-    document.getElementsByClassName("hi-score")[0].textContent = score["easy"];
+    document.getElementsByClassName("hi-score-number")[0].textContent = isNaN(localStorage.getItem("easy")) ? "0" : localStorage.getItem("easy");
     difficulty = "easy";
     startGame(levels["easy"]);
 });
@@ -181,7 +171,7 @@ document.getElementsByClassName("easy")[0].addEventListener("click", function ()
 document.getElementsByClassName("medium")[0].addEventListener("click", function ()
 {
     document.getElementsByClassName("levels")[0].style.display = "none";
-    document.getElementsByClassName("hi-score")[0].textContent = score["medium"];
+    document.getElementsByClassName("hi-score-number")[0].textContent = isNaN(localStorage.getItem("medium")) ? "0" : localStorage.getItem("medium");
     difficulty = "medium";
     startGame(levels["medium"]);
 });
@@ -189,7 +179,7 @@ document.getElementsByClassName("medium")[0].addEventListener("click", function 
 document.getElementsByClassName("hard")[0].addEventListener("click", function ()
 {
     document.getElementsByClassName("levels")[0].style.display = "none";
-    document.getElementsByClassName("hi-score")[0].textContent = score["hard"];
+    document.getElementsByClassName("hi-score-number")[0].textContent = isNaN(localStorage.getItem("hard")) ? "0" : localStorage.getItem("hard");
     difficulty = "hard";
     startGame(levels["hard"]);
 });
