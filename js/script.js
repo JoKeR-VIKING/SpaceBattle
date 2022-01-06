@@ -220,7 +220,7 @@ document.getElementsByClassName("hard")[0].addEventListener("click", function ()
 
 function startGame(speed)
 {
-    music = new Audio("../sounds/background-music.mp3");
+    music = new Audio("sounds/background-music.mp3");
     music.loop = true;
     music.play();
     randomFall = setInterval(asteroidFall, speed);
