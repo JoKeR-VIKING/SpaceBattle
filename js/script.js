@@ -14,7 +14,10 @@ let levels =
     "hard" : 1000,
 };
 
-let difficulty;
+let scores, difficulty;
+$.getJSON("https://raw.githubusercontent.com/JoKeR-VIKING/SpaceBattle/main/js/scores.json", function (data) {
+    scores = data;
+});
 
 document.getElementsByClassName("again")[0].addEventListener("click", function () {
     window.location.reload();
@@ -118,13 +121,20 @@ function asteroidFall()
     let fall = setInterval(function () {
         let asteroidBottom = asteroid.getBoundingClientRect().bottom;
         let asteroidLeft = asteroid.getBoundingClientRect().left;
+        let asteroidRight = asteroid.getBoundingClientRect().right;
 
         if (asteroidBottom >= document.getElementsByClassName("safe-area")[0].getBoundingClientRect().top ||
             (
                 asteroidBottom >= document.getElementsByClassName("rocket")[0].getBoundingClientRect().top &&
-                asteroidLeft >= document.getElementsByClassName("rocket")[0].getBoundingClientRect().left &&
-                asteroidLeft <= document.getElementsByClassName("rocket")[0].getBoundingClientRect().right)
+                document.getElementsByClassName("rocket")[0].getBoundingClientRect().left >= asteroidLeft &&
+                document.getElementsByClassName("rocket")[0].getBoundingClientRect().left <= asteroidRight
+            ) ||
+            (
+                asteroidBottom >= document.getElementsByClassName("rocket")[0].getBoundingClientRect().top &&
+                document.getElementsByClassName("rocket")[0].getBoundingClientRect().right >= asteroidLeft &&
+                document.getElementsByClassName("rocket")[0].getBoundingClientRect().right <= asteroidRight
             )
+        )
         {
             if (lives === 1)
             {
@@ -163,7 +173,7 @@ function asteroidFall()
 document.getElementsByClassName("easy")[0].addEventListener("click", function ()
 {
     document.getElementsByClassName("levels")[0].style.display = "none";
-    document.getElementsByClassName("hi-score-number")[0].textContent = isNaN(localStorage.getItem("easy")) ? "0" : localStorage.getItem("easy");
+    document.getElementsByClassName("hi-score-number")[0].textContent = scores["easy"];
     difficulty = "easy";
     startGame(levels["easy"]);
 });
@@ -171,7 +181,7 @@ document.getElementsByClassName("easy")[0].addEventListener("click", function ()
 document.getElementsByClassName("medium")[0].addEventListener("click", function ()
 {
     document.getElementsByClassName("levels")[0].style.display = "none";
-    document.getElementsByClassName("hi-score-number")[0].textContent = isNaN(localStorage.getItem("medium")) ? "0" : localStorage.getItem("medium");
+    document.getElementsByClassName("hi-score-number")[0].textContent = scores["medium"];
     difficulty = "medium";
     startGame(levels["medium"]);
 });
@@ -179,7 +189,7 @@ document.getElementsByClassName("medium")[0].addEventListener("click", function 
 document.getElementsByClassName("hard")[0].addEventListener("click", function ()
 {
     document.getElementsByClassName("levels")[0].style.display = "none";
-    document.getElementsByClassName("hi-score-number")[0].textContent = isNaN(localStorage.getItem("hard")) ? "0" : localStorage.getItem("hard");
+    document.getElementsByClassName("hi-score-number")[0].textContent = scores["hard"];
     difficulty = "hard";
     startGame(levels["hard"]);
 });
