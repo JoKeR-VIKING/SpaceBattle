@@ -1,0 +1,137 @@
+@font-face
+{
+    font-family: retro;
+    src: url("../fonts/retro.ttf");
+}
+
+*
+{
+    margin: 0;
+    padding: 0;
+    color: #FFF;
+    font-family: "retro", sans-serif;
+}
+
+html
+{
+    background: url("../images/space.jpg") no-repeat center center fixed;
+    background-size: cover;
+}
+
+body
+{
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.unsafe-area
+{
+    width: 100%;
+    height: 90%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.levels
+{
+    position: absolute;
+    top: calc(50% - 50px);
+    left: calc(50% - 60px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.easy, .medium, .hard
+{
+    cursor: pointer;
+    color: #252421;
+    margin-top: 10px;
+    background-color: #FFF;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+}
+
+.score
+{
+    position: absolute;
+    top: 1%;
+    left: calc(50% - 50px);
+    text-align: center;
+}
+
+.lives
+{
+    position: absolute;
+    top: 1%;
+    left: calc(100% - 100px);
+    text-align: center;
+}
+
+.game-over
+{
+    position: absolute;
+    top: calc(50%);
+    left: calc(50% - 70px);
+    display: none;
+    text-align: center;
+}
+
+.again
+{
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    background-color: #FFF;
+    outline: none;
+    border: none;
+    border-radius: 50%;
+}
+
+.rocket
+{
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: calc(90% - 50px);
+    left: calc(50% - 50px);
+}
+
+.bullet
+{
+    width: 2px;
+    height: 15px;
+    position: absolute;
+    background-color: #FFF;
+}
+
+.asteroid
+{
+    width: 40px;
+    height: 40px;
+    position: absolute;
+}
+
+.asteroid-image
+{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.safe-area
+{
+    width: 100%;
+    height: 10%;
+    position: absolute;
+    top: 95%;
+    left: 0;
+    background-color: dimgray;
+    border-radius: 50%;
+    text-align: center;
+    text-transform: uppercase;
+}
