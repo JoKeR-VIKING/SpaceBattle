@@ -71,15 +71,6 @@ body
     text-align: center;
 }
 
-.hi-score
-{
-    position: absolute;
-    top: 1%;
-    left: 6%;
-    margin-left: 50px;
-    text-align: center;
-}
-
 .lives
 {
     position: absolute;
