@@ -139,6 +139,8 @@ function asteroidFall()
             
             if (lives === 1)
             {
+                music.pause();
+                new Audio("../sounds/game-over.wav").play();
                 for (let i=0;i<asteroids.length;i++)
                     unsafeArea.removeChild(asteroids[i]);
                 clearInterval(randomFall);
