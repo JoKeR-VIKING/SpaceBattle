@@ -78,6 +78,15 @@ document.addEventListener("keydown", (event) => {
                     score += 50;
                     document.getElementsByClassName("score-number")[0].textContent = score;
                     unsafeArea.removeChild(bullet);
+                    
+                    let asteroidImage = document.createElement("img");
+                    asteroidImage.className = "asteroid-image";
+                    asteroidImage.src = "images/exploded.png";
+                    asteroidImage.alt = "Image Not Found!";
+                    asteroids[i].innerHTML = "";
+                    asteroids[i].appendChild(asteroidImage);
+                    await sleep(150);
+                    
                     unsafeArea.removeChild(asteroids[i]);
                     asteroids.splice(i, 1);
                     bulletsOnScreen--;
@@ -152,6 +161,14 @@ function asteroidFall()
             lives--;
             document.getElementsByClassName("lives")[0].textContent = "LIVES: " + lives;
 
+            asteroidImage = document.createElement("img");
+            asteroidImage.className = "asteroid-image";
+            asteroidImage.src = "images/exploded.png";
+            asteroidImage.alt = "Image Not Found!";
+            asteroid.innerHTML = "";
+            asteroid.appendChild(asteroidImage);
+            await sleep(150);
+            
             unsafeArea.removeChild(asteroid);
             for (let i=0;i<asteroids.length;i++)
             {
