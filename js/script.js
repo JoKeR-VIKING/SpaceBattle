@@ -73,6 +73,8 @@ document.addEventListener("keydown", (event) => {
                     curr_left >= asteroids[i].getBoundingClientRect().left &&
                     curr_left <= asteroids[i].getBoundingClientRect().right)
                 {
+                    new Audio("../sounds/explosion.wav").play();
+                    
                     score += 50;
                     document.getElementsByClassName("score-number")[0].textContent = score;
                     unsafeArea.removeChild(bullet);
@@ -133,6 +135,8 @@ function asteroidFall()
             )
         )
         {
+            new Audio("../sounds/explosion.wav").play();
+            
             if (lives === 1)
             {
                 for (let i=0;i<asteroids.length;i++)
@@ -187,6 +191,9 @@ document.getElementsByClassName("hard")[0].addEventListener("click", function ()
 
 function startGame(speed)
 {
+    let music = new Audio("../sounds/background-music.mp3");
+    music.loop = true;
+    music.play();
     randomFall = setInterval(asteroidFall, speed);
 }
 
