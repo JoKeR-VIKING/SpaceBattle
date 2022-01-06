@@ -105,6 +105,13 @@ document.addEventListener("keyup", (event) => {
     delete keysPressed[event.code];
 });
 
+function sleep(milliseconds)
+{
+    return new Promise((resolve) => {
+        setTimeout(resolve, milliseconds);
+    });
+}
+
 function asteroidFall()
 {
     let top = Math.random() * (-10 + 30 + 1) - 30;
