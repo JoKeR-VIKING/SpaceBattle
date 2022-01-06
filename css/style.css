@@ -38,11 +38,12 @@ body
 .levels
 {
     position: absolute;
-    top: calc(50% - 50px);
-    left: calc(50% - 60px);
+    top: calc(50% - 80px);
+    left: calc(50% - 190px);
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
 
 .easy, .medium, .hard
@@ -56,11 +57,25 @@ body
     border-radius: 5px;
 }
 
+.controls
+{
+    text-transform: uppercase;
+    margin-top: 30px;
+}
+
 .score
 {
     position: absolute;
     top: 1%;
-    left: calc(50% - 50px);
+    left: 1%;
+    text-align: center;
+}
+
+.hi-score
+{
+    position: absolute;
+    top: 1%;
+    left: 6%;
     text-align: center;
 }
 
