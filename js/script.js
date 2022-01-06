@@ -54,7 +54,7 @@ document.addEventListener("keydown", (event) => {
 
         let bulletTop = bullet.getBoundingClientRect().top;
 
-        let shoot = setInterval(function () {
+        let shoot = setInterval(async function () {
             let bulletBottom = bullet.getBoundingClientRect().bottom;
 
             if (bulletBottom <= 0)
@@ -126,7 +126,7 @@ function asteroidFall()
 
     let asteroidTop = asteroid.getBoundingClientRect().top;
 
-    let fall = setInterval(function () {
+    let fall = setInterval(async function () {
         let asteroidBottom = asteroid.getBoundingClientRect().bottom;
         let asteroidLeft = asteroid.getBoundingClientRect().left;
         let asteroidRight = asteroid.getBoundingClientRect().right;
