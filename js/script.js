@@ -210,7 +210,7 @@ document.getElementsByClassName("hard")[0].addEventListener("click", function ()
 
 function startGame(speed)
 {
-    let music = new Audio("../sounds/background-music.mp3");
+    let music = new Audio("https://github.com/JoKeR-VIKING/SpaceBattle/blob/57bd05030a8d56a22fc8a219dd2f86854663ed0f/sounds/background-music.mp3");
     music.loop = true;
     music.play();
     randomFall = setInterval(asteroidFall, speed);
