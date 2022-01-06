@@ -14,10 +14,7 @@ let levels =
     "hard" : 1000,
 };
 
-let scores, difficulty;
-$.getJSON("https://raw.githubusercontent.com/JoKeR-VIKING/SpaceBattle/main/js/scores.json", function (data) {
-    scores = data;
-});
+let difficulty;
 
 document.getElementsByClassName("again")[0].addEventListener("click", function () {
     window.location.reload();
@@ -143,9 +140,6 @@ function asteroidFall()
                 clearInterval(randomFall);
                 document.getElementsByClassName("game-over")[0].style.display = "block";
                 document.getElementsByClassName("lives")[0].textContent = "LIVES: " + 0;
-                let localScore = isNaN(localStorage.getItem(difficulty)) ? 0 : localStorage.getItem(difficulty);
-                let maxScore = Math.max(parseInt(localScore), score);
-                localStorage.setItem(difficulty, maxScore);
                 return;
             }
 
@@ -173,7 +167,6 @@ function asteroidFall()
 document.getElementsByClassName("easy")[0].addEventListener("click", function ()
 {
     document.getElementsByClassName("levels")[0].style.display = "none";
-    document.getElementsByClassName("hi-score-number")[0].textContent = scores["easy"];
     difficulty = "easy";
     startGame(levels["easy"]);
 });
@@ -181,7 +174,6 @@ document.getElementsByClassName("easy")[0].addEventListener("click", function ()
 document.getElementsByClassName("medium")[0].addEventListener("click", function ()
 {
     document.getElementsByClassName("levels")[0].style.display = "none";
-    document.getElementsByClassName("hi-score-number")[0].textContent = scores["medium"];
     difficulty = "medium";
     startGame(levels["medium"]);
 });
@@ -189,7 +181,6 @@ document.getElementsByClassName("medium")[0].addEventListener("click", function 
 document.getElementsByClassName("hard")[0].addEventListener("click", function ()
 {
     document.getElementsByClassName("levels")[0].style.display = "none";
-    document.getElementsByClassName("hi-score-number")[0].textContent = scores["hard"];
     difficulty = "hard";
     startGame(levels["hard"]);
 });
