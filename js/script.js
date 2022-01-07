@@ -44,7 +44,9 @@ document.addEventListener("keydown", (event) => {
     {
         if (bulletsOnScreen > 10)
             return;
-
+        
+        new Audio("sounds/shoot.wav").play();
+        
         bulletsOnScreen++;
         let bullet = document.createElement("div");
         bullet.className = "bullet";
